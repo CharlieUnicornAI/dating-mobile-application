@@ -25,10 +25,10 @@ export default function RootLayout() {
 
   return (
     <Stack screenOptions={{ headerShown: false }}>
+      {/* Render Auth Screens */}
+      <Stack.Screen name="auth" />
       {/* Render Start Screens */}
       <Stack.Screen name="(start)" />
-      {/* Render Auth Screens */}
-      <Stack.Screen name="(auth)" />
       {/* Render Main Tabs */}
       <Stack.Screen name="(tabs)" />
     </Stack>
