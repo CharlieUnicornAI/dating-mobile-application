@@ -2,36 +2,38 @@ import { View, Text } from "react-native";
 import Container from "@/components/containers/Container";
 import Logo from "@/components/common/Logo";
 import FooterContainer from "@/components/containers/FooterContainer";
-import InputFiled from "@/components/common/InputField";
-import Button from "@/components/common/Button";
+import { useState } from "react";
+import { Link } from "expo-router";
+import FontAwesome from "@expo/vector-icons/FontAwesome";
 
 export default function Signup() {
-  const handleEmailChange = (value: string) => {};
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
 
   return (
     <Container>
       <Logo />
-      <View className="flex flex-col items-center justify-center gap-2 mt-10 w-full px-4">
+      <View className="flex flex-col items-center justify-center gap-2 mt-10 w-full px-4 overflow-y-scroll">
         <Text className="text-black font-semibold font-sans text-xl">
           Signup to Continue
         </Text>
-        <Text className="text-gray-500 font-sans text-sm">
+        <Text className="text-gray-400 font-sans text-sm">
           Please register to continue
         </Text>
-        <InputFiled
-          className="mt-8"
+        {/* <InputFiled
+          className="mt-4"
           type="text"
           placeholder="Jhon@example.com"
-          value=""
+          value={email}
           icon="envelope"
-          onChange={handleEmailChange}
+          onChange={setEmail}
         />
         <InputFiled
           type="password"
           placeholder="Password"
-          value=""
+          value={password}
           icon="key"
-          onChange={handleEmailChange}
+          onChange={setPassword}
         />
         <Button
           type="default"
@@ -44,7 +46,16 @@ export default function Signup() {
           icon="logo-google"
           title="Signup with Google"
           className="mt-1"
-        />
+        /> */}
+        <Text className="text-gray-400 font-sans text-xs mt-1">
+          Do you have already account?
+        </Text>
+        <Text className="text-gray-400 font-sans text-xs">
+          If so, please login{" "}
+          <Link href="/auth/signin" className="text-[#EA4C7C] underline">
+            here
+          </Link>
+        </Text>
       </View>
       <FooterContainer bottom={10}>
         <Text className="text-sm block text-center font-sans">
