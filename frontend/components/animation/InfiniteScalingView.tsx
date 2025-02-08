@@ -11,8 +11,8 @@ interface InfiniteScalingViewProps {
 export default function InfiniteScalingView({
   children,
   className,
-  scaleSize = 1.5,
-  duration = 800,
+  scaleSize = 1.1,
+  duration = 1000,
   isAnimating = true,
 }: InfiniteScalingViewProps) {
   return (

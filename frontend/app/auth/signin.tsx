@@ -1,10 +1,19 @@
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import Container from "@/components/containers/Container";
 import Logo from "@/components/common/Logo";
 import FooterContainer from "@/components/containers/FooterContainer";
+import { useState } from "react";
+import { Link } from "expo-router";
+import InputField from "@/components/common/InputField";
+import Button from "@/components/common/Button";
 
-export default function Signup() {
-  const handleEmailChange = (value: string) => {};
+export default function Signin() {
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+
+  const handleSigninWithEmailClick = () => {};
+
+  const handleSigninWithGoogleClick = () => {};
 
   return (
     <Container>
@@ -16,33 +25,39 @@ export default function Signup() {
         <Text className="text-gray-400 font-sans text-sm">
           Please login to continue
         </Text>
-        {/* <InputFiled
-          className="mt-8"
-          type="text"
-          placeholder="Jhon@example.com"
-          value=""
+        <InputField
+          placehoder="Jhon@example.com"
           icon="envelope"
-          onChange={handleEmailChange}
+          onChange={setEmail}
         />
-        <InputFiled
-          type="password"
-          placeholder="Password"
-          value=""
+        <InputField
+          placehoder="Password"
           icon="key"
-          onChange={handleEmailChange}
+          secureTextEntry={true}
+          onChange={setPassword}
         />
+        <View className="h-2" />
         <Button
           type="default"
-          icon="paper-plane-sharp"
-          title="Signin with Email"
-          className="mt-1"
+          icon="paper-plane"
+          label="Signin with Email"
+          onClick={handleSigninWithEmailClick}
         />
         <Button
           type="outline"
-          icon="logo-google"
-          title="Signin with Google"
-          className="mt-1"
-        /> */}
+          icon="google"
+          label="Signin with Google"
+          onClick={handleSigninWithGoogleClick}
+        />
+        <Text className="text-gray-400 font-sans text-xs mt-1">
+          Don't you have account?
+        </Text>
+        <Text className="text-gray-400 font-sans text-xs">
+          If not, please register{" "}
+          <Link href="/auth/signup" className="text-[#EA4C7C] underline">
+            here
+          </Link>
+        </Text>
       </View>
       <FooterContainer bottom={10}>
         <Text className="text-sm block text-center font-sans">
@@ -61,3 +76,9 @@ export default function Signup() {
     </Container>
   );
 }
+
+const styles = StyleSheet.create({
+  textInput: {
+    height: 50,
+  },
+});

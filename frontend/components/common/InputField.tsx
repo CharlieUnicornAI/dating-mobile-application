@@ -1,55 +1,44 @@
-import { useState } from "react";
 import { View, TextInput } from "react-native";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
+import { useState } from "react";
 
-type FontAwesomeName = keyof typeof FontAwesome.glyphMap;
-
-interface InputProps {
-  className?: string;
-  type: "text" | "password";
-  placeholder?: string;
-  icon?: FontAwesomeName;
-  value?: string;
+interface InputFieldProps {
+  placehoder?: string;
+  icon?: keyof typeof FontAwesome.glyphMap;
+  secureTextEntry?: boolean;
   onChange: (value: string) => void;
 }
 
-export default function InputFiled({
-  className,
-  type,
-  placeholder,
+export default function InputField({
+  placehoder,
   icon,
-  value,
+  secureTextEntry,
   onChange,
-  ...rest
-}: InputProps) {
-  const [isFocused, setIsFocused] = useState(false);
+}: InputFieldProps) {
+  const [isFocused, setIsFocused] = useState<boolean>(false);
 
   return (
     <View
-      className={`w-full flex flex-row items-center px-3 py-2 rounded-lg border ${
+      className={`w-full flex flex-row items-center justify-between border px-3 py-2 rounded-md transition-all duration-300 ease-in-out ${
         isFocused
-          ? "border-[#EA4C7C] shadow-md shadow-[#EA4C7C] transition-all ease-in-out duration-300"
+          ? "border-[#EA4C7C] shadow-md shadow-pink-400"
           : "border-slate-300"
-      } ${className}`}
+      }`}
     >
-      {icon && (
-        <FontAwesome
-          name={icon}
-          size={20}
-          color={isFocused ? "#EA4C7C" : "#A0A0A0"}
-        />
-      )}
+      <FontAwesome
+        name={icon}
+        size={15}
+        color={isFocused ? "#EA4C7C" : "#a0a0a0"}
+      />
       <TextInput
-        className={`flex-1 text-sm ${
-          isFocused ? "text-black" : "text-[#A0A0A0]"
-        } ml-2 outline-none border-none`}
-        placeholder={isFocused ? "" : placeholder}
-        value={value}
-        secureTextEntry={type === "password"}
-        onChangeText={(value: string) => onChange(value)}
+        className={`text-sm font-sans border-none outline-none w-full ml-2 ${
+          isFocused ? "text-black" : "text-[#a0a0a0]"
+        }`}
+        placeholder={isFocused ? "" : placehoder}
+        secureTextEntry={secureTextEntry}
+        onChangeText={(value) => onChange(value)}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
-        {...rest}
       />
     </View>
   );
