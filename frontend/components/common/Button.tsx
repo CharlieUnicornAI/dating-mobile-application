@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Pressable, View, Text } from "react-native";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
+import * as Progress from "react-native-progress";
 
 interface ButtonProps {
   type: "default" | "outline";
@@ -8,7 +9,8 @@ interface ButtonProps {
   icon?: keyof typeof FontAwesome.glyphMap;
   iconPosition: "left" | "right";
   disabled?: boolean;
-  onClick: () => void;
+  loading?: boolean;
+  onClick: (() => Promise<void>) | (() => void);
 }
 
 export default function Button({
@@ -17,6 +19,7 @@ export default function Button({
   icon,
   iconPosition,
   disabled,
+  loading,
   onClick,
 }: ButtonProps) {
   const [isFocused, setIsFocused] = useState<boolean>(false);
@@ -24,7 +27,7 @@ export default function Button({
   return (
     <Pressable
       className={`w-full h-12 rounded-md flex flex-row items-center justify-center gap-2 border border-[#EA4C7C] transition-all ease-in-out duration-300 ${
-        disabled
+        disabled || loading
           ? "bg-gray-300 text-[#a0a0a0] border-[#a0a0a0]"
           : (type === "default" && isFocused) ||
             (type === "outline" && !isFocused)
@@ -34,17 +37,21 @@ export default function Button({
           ? "bg-[#EA4C7C]"
           : "bg-white"
       }`}
-      onPointerEnter={!disabled ? () => setIsFocused(true) : undefined}
-      onPointerLeave={!disabled ? () => setIsFocused(false) : undefined}
+      onPointerEnter={
+        !disabled || !loading ? () => setIsFocused(true) : undefined
+      }
+      onPointerLeave={
+        !disabled || !loading ? () => setIsFocused(false) : undefined
+      }
       onPress={onClick}
-      disabled={disabled}
+      disabled={disabled || loading}
     >
-      {iconPosition === "left" && (
+      {iconPosition === "left" && !loading && (
         <FontAwesome
           name={icon}
           size={15}
           color={
-            disabled
+            disabled || loading
               ? "#a0a0a0"
               : (type === "default" && isFocused) ||
                 (type === "outline" && !isFocused)
@@ -56,9 +63,10 @@ export default function Button({
           }
         />
       )}
+      {iconPosition === "left" && loading && <Progress.Circle animated />}
       <Text
         className={`text-sm font-sans transition-all ease-in-out duration-300 ${
-          disabled
+          disabled || loading
             ? "text-[#a0a0a0]"
             : (type === "default" && isFocused) ||
               (type === "outline" && !isFocused)
@@ -71,12 +79,12 @@ export default function Button({
       >
         {label}
       </Text>
-      {iconPosition === "right" && (
+      {iconPosition === "right" && !loading && (
         <FontAwesome
           name={icon}
           size={15}
           color={
-            disabled
+            disabled || loading
               ? "#a0a0a0"
               : (type === "default" && isFocused) ||
                 (type === "outline" && !isFocused)
@@ -88,6 +96,7 @@ export default function Button({
           }
         />
       )}
+      {iconPosition === "right" && loading && <Progress.Circle animated />}
     </Pressable>
   );
 }

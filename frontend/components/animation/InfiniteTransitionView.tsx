@@ -10,7 +10,7 @@ export default function InfiniteTransitionView({
   labels: string[];
 }) {
   return (
-    <View style={{ overflow: "hidden", height: 50 }}>
+    <View style={{ overflow: "hidden", height: 30 }}>
       {labels.map((label, index) => (
         <MotiView
           key={index}
@@ -19,7 +19,7 @@ export default function InfiniteTransitionView({
           transition={{
             type: "timing",
             duration: 10000,
-            delay: index * 4000,
+            delay: index * 2000,
             loop: true,
             repeatReverse: false,
           }}
