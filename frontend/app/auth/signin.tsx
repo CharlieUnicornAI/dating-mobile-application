@@ -41,11 +41,13 @@ export default function Signin() {
           type="default"
           icon="paper-plane"
           label="Signin with Email"
+          iconPosition="left"
           onClick={handleSigninWithEmailClick}
         />
         <Button
           type="outline"
           icon="google"
+          iconPosition="left"
           label="Signin with Google"
           onClick={handleSigninWithGoogleClick}
         />

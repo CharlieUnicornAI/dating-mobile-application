@@ -9,7 +9,7 @@ export default function FooterContainer({
 }) {
   return (
     <View
-      className={`absolute ${
+      className={`absolute px-8 ${
         bottom >= 20 ? "bottom-20" : "bottom-10"
       } w-full flex items-center`}
     >

@@ -43,7 +43,7 @@ const ScreenTransition = ({
       key={animationKey} // Re-render when animationKey changes
       from={transition.from}
       animate={transition.to}
-      transition={{ type: "timing", duration: 1000 }}
+      transition={{ type: "timing", duration: 2000 }}
       className={className}
       style={{ width: "100%" }}
     >

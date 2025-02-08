@@ -19,7 +19,7 @@ export default function InfiniteTransitionView({
           transition={{
             type: "timing",
             duration: 10000,
-            delay: index * 1000,
+            delay: index * 4000,
             loop: true,
             repeatReverse: false,
           }}

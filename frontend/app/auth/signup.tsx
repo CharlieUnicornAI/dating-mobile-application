@@ -40,12 +40,14 @@ export default function Signup() {
         <Button
           type="default"
           icon="paper-plane"
+          iconPosition="left"
           label="Signup with Email"
           onClick={handleSignupWithEmailClick}
         />
         <Button
           type="outline"
           icon="google"
+          iconPosition="left"
           label="Signup with Google"
           onClick={handleSignupWithEmailClick}
         />
