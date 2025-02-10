@@ -5,6 +5,12 @@ export default function ProfileCreateLayout() {
     <Stack screenOptions={{ headerShown: false }}>
       <Stack.Screen name="detail" />
       <Stack.Screen name="gender" />
+      <Stack.Screen
+        name="modal"
+        options={{
+          presentation: "modal",
+        }}
+      />
     </Stack>
   );
 }

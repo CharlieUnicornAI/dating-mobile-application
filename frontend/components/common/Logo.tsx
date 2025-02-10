@@ -14,7 +14,6 @@ export default function Logo() {
           <Image source={LogoImage} style={styles.logoImage} />
         </View>
       </InfiniteScalingView>
-      <InfiniteTransitionView labels={logoTexts} />
     </View>
   );
 }

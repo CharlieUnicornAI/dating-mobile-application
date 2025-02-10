@@ -6,8 +6,16 @@ import {
 } from "@expo-google-fonts/montserrat";
 import { View, Text } from "react-native";
 import "../global.css";
-import { enableLayoutAnimations } from "react-native-reanimated";
-enableLayoutAnimations(false);
+import {
+  configureReanimatedLogger,
+  ReanimatedLogLevel,
+} from "react-native-reanimated";
+
+// This is the default configuration
+configureReanimatedLogger({
+  level: ReanimatedLogLevel.warn,
+  strict: false, // Reanimated runs in strict mode by default
+});
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
@@ -25,10 +33,12 @@ export default function RootLayout() {
 
   return (
     <Stack screenOptions={{ headerShown: false }}>
-      {/* Render Auth Screens */}
-      <Stack.Screen name="auth" />
       {/* Render Start Screens */}
       <Stack.Screen name="(start)" />
+      {/* Render Auth Screens */}
+      <Stack.Screen name="auth" />
+      {/* Render Profile Screens */}
+      <Stack.Screen name="profile" />
       {/* Render Not Found Screen */}
       <Stack.Screen name="+not-found" />
     </Stack>

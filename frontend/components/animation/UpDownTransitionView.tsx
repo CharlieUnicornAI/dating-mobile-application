@@ -1,5 +1,4 @@
 import React from "react";
-import { View, Easing } from "react-native";
 import { MotiView } from "moti";
 
 export default function UpDownTransitionContainer({
@@ -14,7 +13,6 @@ export default function UpDownTransitionContainer({
       transition={{
         type: "timing",
         duration: 1000, // Smooth duration
-        easing: Easing.inOut(Easing.quad), // ✅ Correct easing function
         loop: true, // Infinite animation
         repeatReverse: true, // Reverse each time
       }}

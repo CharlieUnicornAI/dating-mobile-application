@@ -15,15 +15,21 @@ export default function InputField({
   secureTextEntry,
   onChange,
 }: InputFieldProps) {
-  const [isFocused, setIsFocused] = useState<boolean>(false);
+  const [isFocused, setIsFocused] = useState(false);
 
   return (
     <View
-      className={`w-full flex flex-row items-center justify-between border px-3 py-2 rounded-md transition-all duration-300 ease-in-out ${
-        isFocused
-          ? "border-[#EA4C7C] shadow-md shadow-pink-400"
-          : "border-slate-300"
-      }`}
+      style={{
+        width: "100%",
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+        borderWidth: 1,
+        paddingHorizontal: 12,
+        paddingVertical: 2,
+        borderRadius: 6,
+        borderColor: isFocused ? "#EA4C7C" : "#a0a0a0",
+      }}
     >
       <FontAwesome
         name={icon}
@@ -31,11 +37,19 @@ export default function InputField({
         color={isFocused ? "#EA4C7C" : "#a0a0a0"}
       />
       <TextInput
-        className={`text-sm font-sans border-none outline-none w-full ml-2 ${
-          isFocused ? "text-black" : "text-[#a0a0a0]"
-        }`}
+        style={{
+          flex: 1,
+          marginLeft: 8,
+          fontSize: 12,
+          fontFamily: "Montserrat",
+          color: isFocused ? "black" : "#a0a0a0",
+          borderWidth: 0,
+          outlineColor: "white",
+        }}
         placeholder={isFocused ? "" : placehoder}
+        placeholderTextColor="#a0a0a0"
         secureTextEntry={secureTextEntry}
+        cursorColor="black"
         onChangeText={(value) => onChange(value)}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}

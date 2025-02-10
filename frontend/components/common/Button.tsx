@@ -37,12 +37,10 @@ export default function Button({
           ? "bg-[#EA4C7C]"
           : "bg-white"
       }`}
-      onPointerEnter={
+      onTouchStart={
         !disabled || !loading ? () => setIsFocused(true) : undefined
       }
-      onPointerLeave={
-        !disabled || !loading ? () => setIsFocused(false) : undefined
-      }
+      onTouchEnd={!disabled || !loading ? () => setIsFocused(false) : undefined}
       onPress={onClick}
       disabled={disabled || loading}
     >

@@ -20,7 +20,7 @@ export default function Signup() {
     <ScreenTransition animationKey={0} direction="enter">
       <Container>
         <Logo />
-        <View className="flex flex-col items-center justify-center gap-2 mt-10 w-full px-4">
+        <View className="flex flex-col items-center justify-center gap-2 mt-2 w-full px-4">
           <Text className="text-black font-semibold font-sans text-xl">
             Signup to Continue
           </Text>
@@ -38,7 +38,7 @@ export default function Signup() {
             secureTextEntry={true}
             onChange={setPassword}
           />
-          <View className="h-2" />
+          <View className="h-1" />
           <Button
             type="default"
             icon="paper-plane"
@@ -64,15 +64,15 @@ export default function Signup() {
           </Text>
         </View>
         <FooterContainer bottom={10}>
-          <Text className="text-sm block text-center font-sans">
+          <Text className="text-xs block text-center font-sans">
             I accept all the
           </Text>
           <View className="w-full flex flex-row items-center justify-center gap-2">
-            <Text className="text-[#EA4C7C] font-sans text-sm">
+            <Text className="text-[#EA4C7C] font-sans text-xs">
               Terms & Conditions
             </Text>
-            <Text className="text-black font-sans text-sm">&</Text>
-            <Text className="text-[#EA4C7C] font-sans text-sm">
+            <Text className="text-black font-sans text-xs">&</Text>
+            <Text className="text-[#EA4C7C] font-sans text-xs">
               Privacy Policy
             </Text>
           </View>

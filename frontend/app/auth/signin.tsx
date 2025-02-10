@@ -3,7 +3,7 @@ import Container from "@/components/containers/Container";
 import Logo from "@/components/common/Logo";
 import FooterContainer from "@/components/containers/FooterContainer";
 import { useState } from "react";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import InputField from "@/components/common/InputField";
 import Button from "@/components/common/Button";
 import ScreenTransition from "@/components/animation/ScreenTransition";
@@ -11,8 +11,12 @@ import ScreenTransition from "@/components/animation/ScreenTransition";
 export default function Signin() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const router = useRouter();
 
-  const handleSigninWithEmailClick = () => {};
+  const handleSigninWithEmailClick = () => {
+    console.log("navigate to profile gender");
+    router.push("/profile/create/gender");
+  };
 
   const handleSigninWithGoogleClick = () => {};
 
@@ -20,7 +24,7 @@ export default function Signin() {
     <ScreenTransition animationKey={0} direction="enter">
       <Container>
         <Logo />
-        <View className="flex flex-col items-center justify-center gap-2 mt-10 w-full px-4">
+        <View className="flex flex-col items-center justify-center gap-2 mt-2 w-full px-4">
           <Text className="text-black font-semibold font-sans text-xl">
             Signin to Continue
           </Text>
@@ -38,7 +42,7 @@ export default function Signin() {
             secureTextEntry={true}
             onChange={setPassword}
           />
-          <View className="h-2" />
+          <View className="h-1" />
           <Button
             type="default"
             icon="paper-plane"
@@ -64,15 +68,15 @@ export default function Signin() {
           </Text>
         </View>
         <FooterContainer bottom={10}>
-          <Text className="text-sm block text-center font-sans">
+          <Text className="text-xs block text-center font-sans">
             I accept all the
           </Text>
           <View className="w-full flex flex-row items-center justify-center gap-2">
-            <Text className="text-[#EA4C7C] font-sans text-sm">
+            <Text className="text-[#EA4C7C] font-sans text-xs">
               Terms & Conditions
             </Text>
-            <Text className="text-black font-sans text-sm">&</Text>
-            <Text className="text-[#EA4C7C] font-sans text-sm">
+            <Text className="text-black font-sans text-xs">&</Text>
+            <Text className="text-[#EA4C7C] font-sans text-xs">
               Privacy Policy
             </Text>
           </View>

@@ -4,21 +4,13 @@ import { MotiView } from "moti";
 
 const { height } = Dimensions.get("window");
 
-interface ModalProps {
-  children: React.ReactNode;
-  visible: boolean;
-  onClose: () => void;
-}
-
 export default function ModalContainer({
   children,
-  visible,
-  onClose,
-}: ModalProps) {
-  if (!visible) return null;
-
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <Pressable className="absolute top-0 left-0 right-0 bottom-0 flex justify-center items-center bg-black/50 overflow-x-hidden overflow-y-scroll">
+    <View className="absolute top-0 left-0 right-0 bottom-0 flex justify-center items-center bg-black/50 overflow-x-hidden overflow-y-scroll">
       <MotiView
         from={{ translateY: height / 2 }}
         animate={{ translateY: 0 }}
@@ -32,6 +24,6 @@ export default function ModalContainer({
       >
         {children}
       </MotiView>
-    </Pressable>
+    </View>
   );
 }

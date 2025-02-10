@@ -6,14 +6,17 @@ import FooterContainer from "@/components/containers/FooterContainer";
 import Button from "@/components/common/Button";
 import { useState } from "react";
 import ScreenTransition from "@/components/animation/ScreenTransition";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 
 export default function Gender() {
   const [gender, setGender] = useState<Gender | null>(null);
+  const router = useRouter();
 
   const handleOnSelect = (gdr: Gender) => setGender(gdr);
 
-  const handleOnClick = () => {};
+  const handleOnClick = () => {
+    router.push("/profile/create/detail");
+  };
 
   return (
     <ScreenTransition animationKey={0} direction="enter">
@@ -23,16 +26,14 @@ export default function Gender() {
       >
         <GenderSelect onSelect={handleOnSelect} />
         <FooterContainer bottom={10}>
-          <Link href="/profile/create/detail" className="w-full">
-            <Button
-              type="default"
-              label="Continue"
-              icon="caret-right"
-              iconPosition="right"
-              disabled={!gender}
-              onClick={handleOnClick}
-            />
-          </Link>
+          <Button
+            type="default"
+            label="Continue"
+            icon="caret-right"
+            iconPosition="right"
+            disabled={!gender}
+            onClick={handleOnClick}
+          />
         </FooterContainer>
       </CreateProfileContainer>
     </ScreenTransition>
