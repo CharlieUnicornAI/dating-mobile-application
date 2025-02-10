@@ -3,15 +3,17 @@ import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { useState } from "react";
 
 interface InputFieldProps {
-  placehoder?: string;
+  placeholder?: string;
   icon?: keyof typeof FontAwesome.glyphMap;
+  value?: any;
   secureTextEntry?: boolean;
-  onChange: (value: string) => void;
+  onChange: (val: string) => void;
 }
 
 export default function InputField({
-  placehoder,
+  placeholder,
   icon,
+  value,
   secureTextEntry,
   onChange,
 }: InputFieldProps) {
@@ -26,9 +28,20 @@ export default function InputField({
         justifyContent: "space-between",
         borderWidth: 1,
         paddingHorizontal: 12,
+        // paddingVertical: 2,
         paddingVertical: 2,
         borderRadius: 6,
         borderColor: isFocused ? "#EA4C7C" : "#a0a0a0",
+        backgroundColor: "white",
+
+        // Proper shadow styles for iOS
+        shadowColor: "#EA4C7C",
+        shadowOffset: { width: 12, height: 12 },
+        shadowOpacity: isFocused ? 1 : 0,
+        shadowRadius: 4,
+
+        // Elevation for Android (because shadow props don’t work on Android)
+        elevation: isFocused ? 10 : 0,
       }}
     >
       <FontAwesome
@@ -46,11 +59,12 @@ export default function InputField({
           borderWidth: 0,
           outlineColor: "white",
         }}
-        placeholder={isFocused ? "" : placehoder}
+        placeholder={isFocused ? "" : placeholder}
         placeholderTextColor="#a0a0a0"
+        value={value}
         secureTextEntry={secureTextEntry}
         cursorColor="black"
-        onChangeText={(value) => onChange(value)}
+        onChangeText={(val) => onChange(val)}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
       />

@@ -4,14 +4,14 @@ import { Pressable, useWindowDimensions, View, StyleSheet } from "react-native";
 import InputField from "@/components/common/InputField";
 import { useState } from "react";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-// import ImageSelectModal from "@/components/modals/ImageSelectModal";
 import FooterContainer from "@/components/containers/FooterContainer";
 import Button from "@/components/common/Button";
 import { useRouter } from "expo-router";
+import Calendar from "@/components/common/Calendar";
 
 export default function Detail() {
   const [visible, setVisible] = useState<boolean>(false);
-  const [fullname, setFullname] = useState<string>("");
+  const [name, setName] = useState<string>("");
   const [isFocused, setIsFocused] = useState<boolean>(false);
   const router = useRouter();
   const { width } = useWindowDimensions(); // Get the screen width dynamically
@@ -53,20 +53,17 @@ export default function Detail() {
           </Pressable>
         </View>
         <View className="flex gap-4 w-full mt-8">
-          <InputField
-            placehoder="Full Name"
-            icon="user"
-            onChange={setFullname}
-          />
-          <InputField
-            placehoder="Date of birth"
+          <InputField placeholder="Full Name" icon="user" onChange={setName} />
+          <Calendar placeholder="Date of birth" onChange={setName} />
+          {/* <InputField
+            placeholder="Date of birth"
             icon="calendar"
-            onChange={setFullname}
-          />
+            onChange={setName}
+          /> */}
           <InputField
-            placehoder="Phone number"
+            placeholder="Phone number"
             icon="phone"
-            onChange={setFullname}
+            onChange={setName}
           />
         </View>
         <FooterContainer bottom={10}>

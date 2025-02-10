@@ -1,18 +1,34 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, Alert } from "react-native";
 import Container from "@/components/containers/Container";
 import Logo from "@/components/common/Logo";
 import FooterContainer from "@/components/containers/FooterContainer";
 import { useState } from "react";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import InputField from "@/components/common/InputField";
 import Button from "@/components/common/Button";
 import ScreenTransition from "@/components/animation/ScreenTransition";
+import { signupWithEmail } from "@/lib/scripts/auth";
+import { setAuthToken } from "@/lib/axiosInstance";
 
 export default function Signup() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const router = useRouter();
 
-  const handleSignupWithEmailClick = () => {};
+  const handleSignupWithEmailClick = async () => {
+    try {
+      const response = await signupWithEmail({ email, password });
+      if (response.success) {
+        Alert.alert("Signup successfully");
+        router.push("/auth/signin");
+      } else {
+        Alert.alert(response.message);
+      }
+    } catch (error) {
+      console.log("handle signup with email error: ", error);
+      throw error;
+    }
+  };
 
   const handleSignupWithGoogleClick = () => {};
 
@@ -28,12 +44,12 @@ export default function Signup() {
             Please register to continue
           </Text>
           <InputField
-            placehoder="Jhon@example.com"
+            placeholder="Jhon@example.com"
             icon="envelope"
             onChange={setEmail}
           />
           <InputField
-            placehoder="Password"
+            placeholder="Password"
             icon="key"
             secureTextEntry={true}
             onChange={setPassword}
@@ -81,9 +97,3 @@ export default function Signup() {
     </ScreenTransition>
   );
 }
-
-const styles = StyleSheet.create({
-  textInput: {
-    height: 50,
-  },
-});

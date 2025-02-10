@@ -7,11 +7,20 @@ import Logo from "@/components/common/Logo";
 import FooterContainer from "@/components/containers/FooterContainer";
 import StartContainer from "@/components/containers/StartContainer";
 import ScreenTransition from "@/components/animation/ScreenTransition";
+import { getRandomNumber } from "@/helper";
+import { logoTexts } from "@/constants/initialValues";
+import ThreeDotsLoader from "@/components/animation/ThreeDotsLoader";
 
 const HeartImage = require("@/assets/images/heart.png");
 
 export default function Start() {
   const [progress, setProgress] = useState(0);
+  const [randomText, setRandomText] = useState("");
+
+  useEffect(() => {
+    setRandomText(logoTexts[getRandomNumber()]);
+  }, []);
+
   const router = useRouter();
 
   useEffect(() => {
@@ -51,6 +60,12 @@ export default function Start() {
                 progress={progress}
                 width={200}
               />
+            </View>
+            <View className="flex flex-row items-center justify-center mt-4">
+              <Text className="font-sans text-xs text-[#EA4C7C]">
+                {randomText}
+              </Text>
+              <ThreeDotsLoader />
             </View>
           </FooterContainer>
         </View>
